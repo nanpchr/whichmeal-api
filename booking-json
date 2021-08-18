@@ -98,6 +98,34 @@
                     "flex": 4
                   }
                 ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Description",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ติดตาม รายงาน ประเมินผลความก้าวหน้า",
+                    "wrap": true,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 4
+                  }
+                ]
               }
             ]
           }
@@ -141,7 +169,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "GROUP MEETING SESSION 2",
+            "text": "GROUP MEETING SESSION 1",
             "wrap": true,
             "weight": "bold",
             "gravity": "center",
@@ -212,6 +240,34 @@
                   {
                     "type": "text",
                     "text": "Zoom Meeting",
+                    "wrap": true,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 4
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Description",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "ติดตาม รายงาน ประเมินผลความก้าวหน้า",
                     "wrap": true,
                     "color": "#666666",
                     "size": "sm",
