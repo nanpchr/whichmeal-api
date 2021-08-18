@@ -1,0 +1,308 @@
+function getcustdata(custid='Uc217a79841540c1b0afe06312a885849'){
+  var sheeturl = 'https://docs.google.com/spreadsheets/d/11hv9ztwqwQdRQqzng81TR16uwWM3ScrJY4IUF0JBE_Q/edit?usp=sharing'
+  var sheetname = 'kcal'
+  var psheet = gspandas.gsdataframe(sheeturl,sheetname)
+  var pinfo = psheet.getrowdict('รหัสลูกค้า',custid)
+  Logger.log(pinfo)
+  return pinfo
+}
+
+
+function getcallistflex(custid='Uc217a79841540c1b0afe06312a885849'){
+  var datList = getcustdata(custid)
+  //var datList = [{'fname':'ข้าวมันไก่','price':'60'},{'fname':'ข้าวมันไก่','price':'60'}]
+
+  for (i in datList){
+    fname = datList[i]['ชื่อลูกค้า']
+    fcal = datList[i]['แคลอรี่']
+    fprotein = datList[i]['โปรตีน']
+    fcarb = datList[i]['คาร์โบไฮเดรต']
+    ffat = datList[i]['ไขมัน']
+    ffiber = datList[i]['ไฟเบอร์']
+
+    fpcal = datList[i]['เป้าหมายแคล']
+    fpprotein = datList[i]['เป้าหมายโปรตีน']
+    fpcarb = datList[i]['เป้าหมายคาร์บ']
+    fpfat = datList[i]['เป้าหมายไขมัน']
+    fpfiber = datList[i]['เป้าหมายไฟเบอร์']
+  }
+}
+
+
+
+function getcalflex(custid='Uc217a79841540c1b0afe06312a885849',altText='Current Status'){
+
+itemflex = getcallistflex(custid)
+
+  var flextemplate = {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Current Status",
+        "weight": "bold",
+        "color": "#FFA500",
+        "size": "xxl",
+        "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "Customer Name: คุณ" + fname,
+        "color": "#555555",
+        "size": "sm",
+        "flex": 0,
+        "gravity": "center"
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ข้อมูลโภชนาการ",
+            "weight": "bold",
+            "size": "sm",
+            "color": "#555555",
+            "flex": 2,
+            "wrap": true
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "ที่ได้รับ",
+            "weight": "bold",
+            "flex": 1,
+            "size": "sm",
+            "align": "center",
+            "gravity": "center"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "เป้าหมาย",
+            "weight": "bold",
+            "flex": 1,
+            "size": "sm",
+            "align": "center",
+            "gravity": "center"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "พลังงาน (kcal)",
+            "size": "sm",
+            "color": "#555555",
+            "flex": 2
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fcal+'',
+            "size": "sm",
+            "color": "#111111",
+            "align": "center"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fpcal+'',
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      },
+      {
+            "type": "separator",
+            "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "โปรตีน (g)",
+            "size": "sm",
+            "color": "#555555",
+            "flex": 2
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fprotein+'',
+            "size": "sm",
+            "color": "#111111",
+            "align": "center"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fpprotein+'',
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      },
+      {
+            "type": "separator",
+            "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "คาร์โบไฮเดรต (g)",
+            "size": "sm",
+            "color": "#555555",
+            "flex": 2
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fcarb+'',
+            "size": "sm",
+            "color": "#111111",
+            "align": "center"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fpcarb+'',
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      },
+      {
+            "type": "separator",
+            "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ไขมัน (g)",
+            "size": "sm",
+            "color": "#555555",
+            "flex": 2
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": ffat+'',
+            "size": "sm",
+            "color": "#111111",
+            "align": "center"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": fpfat+'',
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      },
+      {
+            "type": "separator",
+            "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ไฟเบอร์ (g)",
+            "size": "sm",
+            "color": "#555555",
+            "flex": 2
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": ffiber+'',
+            "size": "sm",
+            "color": "#111111",
+            "align": "center"
+          },
+          {
+            "type": "separator",
+          },
+          {
+            "type": "text",
+            "text": fpfiber+'',
+            "size": "sm",
+            "align": "center"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+  var lineres = {}
+  lineres['type'] = 'flex'
+  lineres['altText'] = altText
+  lineres['contents'] = flextemplate
+
+  var lr = {
+  "line_payload":[
+      lineres
+    ],
+  "response_type": "object"
+  }
+  return lr
+}
+
+function doGet(request){
+ // Change Spread Sheet url
+ var custid = request.parameter.custid
+ //Logger.log(pname)
+ var result = getcalflex(custid)
+ //Logger.log(jo)
+ result = JSON.stringify(result);
+ return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON); 
+}
