@@ -1,0 +1,359 @@
+//Don't Forget to Import 'gspandas' Library 
+
+function getproductdata(category='ข้าวจานเดียว'){
+  var sheeturl = 'https://docs.google.com/spreadsheets/d/11hv9ztwqwQdRQqzng81TR16uwWM3ScrJY4IUF0JBE_Q/edit?usp=sharing'
+  var sheetname = 'คลังเมนูอาหาร'
+  var psheet = gspandas.gsdataframe(sheeturl,sheetname)
+  var pinfo = psheet.getrowdict('หมวด',category)
+  Logger.log(pinfo)
+  return pinfo
+}
+
+function genproductflex(category,ncol=5){
+  var pdata = getproductdata(category)
+  var pflex = getmultipleflex(pdata,ncol)
+  Logger.log(pflex)
+  return pflex
+
+
+
+}
+
+function getproductflex(pname,pimage,pcal,pprotein,pcarb,pfat,pfiber,altText='เลือกเมนูอาหารเลย'){
+
+  var flextemplate = {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "mega",
+      "hero": {
+        "type": "image",
+        "size": "full",
+        "aspectRatio": "md",
+        "aspectMode": "cover",
+        "url": pimage
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": pname,
+            "wrap": true,
+            "weight": "bold",
+            "size": "xl"
+          },
+          {
+            "type": "separator",
+            "margin": "md"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": pcal +' kcal',
+                "wrap": true,
+                "weight": "bold",
+                "size": "xl",
+                "flex": 0
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "โปรตีน"
+              },
+              {
+                "type": "text",
+                "text": pprotein + ' g',
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "คาร์โบไฮเดรต"
+              },
+              {
+                "type": "text",
+                "text": pcarb + ' g',
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ไขมัน"
+              },
+              {
+                "type": "text",
+                "text": pfat + ' g',
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ไฟเบอร์"
+              },
+              {
+                "type": "text",
+                "text": pfiber + ' g',
+                "align": "end"
+              }
+            ]
+          }
+        ],
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "action": {
+              "type": "uri",
+              "label": "เพิ่มรายการ",
+              "uri": "https://linecorp.com"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+
+  var lineres = {}
+  lineres['type'] = 'flex'
+  lineres['altText'] = altText
+  lineres['contents'] = flextemplate
+
+  var lr = {
+  "line_payload":[
+      lineres
+    ],
+  "response_type": "object"
+  }
+  return lr
+}
+
+function doGet(request){
+ // Change Spread Sheet url
+ var category = request.parameter.category
+ var ncol = request.parameter.ncol
+ //Logger.log(pname)
+ var result = genproductflex(category,ncol)
+ //Logger.log(jo)
+ result = JSON.stringify(result);
+ return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON); 
+}
+
+function getmenuflex(mimage,mname,mcal,mprotein,mcarb,mfat,mfiber){
+
+    var flextemplate = 
+    {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": mimage,
+        "size": "full",
+        "margin": "none",
+        "aspectMode": "cover",
+        "aspectRatio": "4:3"
+      },
+      {
+        "type": "text",
+        "text": mname,
+        "weight": "bold",
+        "size": "xl",
+        "margin": "md",
+        "wrap": true
+      },
+      {
+        "type": "separator",
+        "margin": "md"
+      },
+      {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "พลังงาน"
+              },
+              {
+                "type": "text",
+                "text": mcal + " kcal",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "โปรตีน"
+              },
+              {
+                "type": "text",
+                "text": mprotein + " g",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "คาร์โบไฮเดรต"
+              },
+              {
+                "type": "text",
+                "text": mcarb + " g",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ไขมัน"
+              },
+              {
+                "type": "text",
+                "text": mfat + " g",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ไฟเบอร์"
+              },
+              {
+                "type": "text",
+                "text": mfiber + " g",
+                "align": "end"
+              }
+            ]
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "message",
+              "label": "เลือก",
+              "text": mname
+            },
+            "style": "primary",
+            "height": "sm",
+            "margin": "lg"
+          }
+        ]
+      }
+  }
+
+return flextemplate
+}
+
+function getrowmenu(mlist){
+  var mltemp = []
+  for (let m in mlist){
+    let mname = mlist[m]['menuname']
+    let mimage = mlist[m]['menuimage']
+    let mcal = mlist[m]['menucal']
+    let mprotein = mlist[m]['menuprotein']
+    let mcarb = mlist[m]['menucarb']
+    let mfat = mlist[m]['menufat']
+    let mfiber = mlist[m]['menufiber']
+    var mtemp = getmenuflex(mimage,mname,mcal,mprotein,mcarb,mfat,mfiber)
+    mltemp.push(mtemp)
+    
+  }
+  return mltemp
+}
+
+
+function getmultipleflex(mlist,ncol=5) {
+  
+  //let ncol = 3
+  Logger.log(ncol)
+  //Logger.log(nrow)
+  
+  let lpayloadList = []
+
+  
+  let mltemp = []
+  for (i=0; i< ncol; i++){
+    let ind = Math.floor(Math.random() * mlist.length)
+    let mname = mlist[ind]['ชื่อเมนู']
+    let mimage = mlist[ind]['รูปภาพ']
+    let mcal = mlist[ind]['แคลอรี่']
+    let mprotein = mlist[ind]['โปรตีน']
+    let mcarb = mlist[ind]['คาร์โบไฮเดรต']
+    let mfat = mlist[ind]['ไขมัน']
+    let mfiber = mlist[ind]['ไฟเบอร์']
+    var mtemp = getmenuflex(mimage,mname,mcal,mprotein,mcarb,mfat,mfiber)
+    mltemp.push(mtemp)
+  }
+
+  
+    var flextemplate = {
+    "type": "carousel",
+    "contents": mltemp
+    }
+
+    var lineres = {}
+    lineres['type'] = 'flex'
+    lineres['altText'] = 'เลือกเมนูอาหารเลย'
+    lineres['contents'] = flextemplate
+    lpayloadList.push(lineres)
+
+
+  var lr = {
+  "line_payload": lpayloadList,
+  "response_type": "object"
+  }
+  Logger.log(lr)
+  return lr
+}
