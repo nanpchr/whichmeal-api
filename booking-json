@@ -1,0 +1,245 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://firebasestorage.googleapis.com/v0/b/whichmeal-food-db.appspot.com/o/WhichMeal%20Logo.png?alt=media&token=41955a4a-d769-4d30-ab71-e76980c60d25",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+          "type": "uri",
+          "uri": "http://linecorp.com/"
+        }
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GROUP MEETING SESSION 1",
+            "wrap": true,
+            "weight": "bold",
+            "gravity": "center",
+            "size": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "lg",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Host",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  },
+                  {
+                    "type": "text",
+                    "text": "Patcharin Sonjit (Nan)",
+                    "wrap": true,
+                    "size": "sm",
+                    "color": "#666666",
+                    "flex": 4
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Date",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  },
+                  {
+                    "type": "text",
+                    "text": "Monday 25, 9:00PM",
+                    "wrap": true,
+                    "size": "sm",
+                    "color": "#666666",
+                    "flex": 4
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Place",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  },
+                  {
+                    "type": "text",
+                    "text": "Zoom Meeting",
+                    "wrap": true,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Join",
+              "data": "hello"
+            },
+            "style": "primary",
+            "color": "#FFA500",
+            "height": "sm"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://firebasestorage.googleapis.com/v0/b/whichmeal-food-db.appspot.com/o/WhichMeal%20Logo.png?alt=media&token=41955a4a-d769-4d30-ab71-e76980c60d25",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+          "type": "uri",
+          "uri": "http://linecorp.com/"
+        }
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GROUP MEETING SESSION 2",
+            "wrap": true,
+            "weight": "bold",
+            "gravity": "center",
+            "size": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "lg",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Host",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  },
+                  {
+                    "type": "text",
+                    "text": "Patcharin Sonjit (Nan)",
+                    "wrap": true,
+                    "size": "sm",
+                    "color": "#666666",
+                    "flex": 4
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Date",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  },
+                  {
+                    "type": "text",
+                    "text": "Monday 25, 9:00PM",
+                    "wrap": true,
+                    "size": "sm",
+                    "color": "#666666",
+                    "flex": 4
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Place",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                  },
+                  {
+                    "type": "text",
+                    "text": "Zoom Meeting",
+                    "wrap": true,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "postback",
+              "label": "Join",
+              "data": "hello"
+            },
+            "style": "primary",
+            "color": "#FFA500",
+            "height": "sm"
+          }
+        ]
+      }
+    }
+  ]
+}
