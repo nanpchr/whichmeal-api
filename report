@@ -1,0 +1,618 @@
+//Don't Forget to Import 'gspandas' Library
+
+function getcustdata(custid='Uc217a79841540c1b0afe06312a885849'){
+  var sheeturl = 'https://docs.google.com/spreadsheets/d/11hv9ztwqwQdRQqzng81TR16uwWM3ScrJY4IUF0JBE_Q/edit?usp=sharing'
+  var sheetname = 'รายงานความก้าวหน้า'
+  var psheet = gspandas.gsdataframe(sheeturl,sheetname)
+  var pinfo = psheet.getrowdict('รหัสลูกค้า',custid)
+  Logger.log(pinfo)
+  return pinfo
+}
+
+
+function getcallistflex(custid='Uc217a79841540c1b0afe06312a885849'){
+  var datList = getcustdata(custid)
+  //var datList = [{'fname':'ข้าวมันไก่','price':'60'},{'fname':'ข้าวมันไก่','price':'60'}]
+
+  for (i in datList){
+
+    fname = datList[i]['ชื่อลูกค้า']
+    fdate = datList[i]['Report Date']
+    fpercent = datList[i]['เปอร์เซ็นต์สำเร็จรวม']
+    fppercent = datList[i]['เปอร์เซ็นต์สำเร็จโปรตีน']
+    fcpercent = datList[i]['เปอร์เซ็นต์สำเร็จคาร์บ']
+    ffpercent = datList[i]['เปอร์เซ็นต์สำเร็จไขมัน']
+    ffipercent = datList[i]['เปอร์เซ็นต์สำเร็จไฟเบอร์']
+    favcal = datList[i]['ค่าเฉลี่ยพลังงาน']
+    favp = datList[i]['ค่าเฉลี่ยโปรตีน']
+    favc = datList[i]['ค่าเฉลี่ยคาร์บ']
+    favf = datList[i]['ค่าเฉลี่ยไขมัน']
+    favfi = datList[i]['ค่าเฉลี่ยไฟเบอร์']
+    fmoodurl = datList[i]['mood url']
+    fcustmsg = datList[i]['ข้อความสัปดาห์ที่แล้ว']
+    foldwgt = datList[i]['น้ำหนักสัปดาห์ที่แล้ว']
+    fnewwgt = datList[i]['น้ำหนักปัจจุบัน']
+    fexpectw = datList[i]['น้ำหนักที่คาดการณ์']
+    fnutmsg = datList[i]['Nutritionist Comment']
+
+  }
+}
+
+
+
+function getcalflex(custid='Uc217a79841540c1b0afe06312a885849',altText='Report'){
+
+itemflex = getcallistflex(custid)
+
+  var flextemplate = {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "mega",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Progress Report",
+            "color": "#ffffff",
+            "align": "start",
+            "size": "xxl",
+            "gravity": "center"
+          },
+          {
+            "type": "text",
+            "text": "Customer name: "+ fname,
+            "color": "#ffffff",
+            "align": "start",
+            "size": "md",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#FFA500",
+        "paddingTop": "19px",
+        "paddingAll": "12px",
+        "paddingBottom": "16px"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Date issued: "+ fdate,
+            "size": "xxs",
+            "color": "#8C8C8C",
+            "align": "end"
+          },
+          {
+            "type": "text",
+            "text": "Overall "+ fpercent + " success",
+            "color": "#8C8C8C",
+            "align": "start",
+            "size": "xs",
+            "gravity": "center",
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": fpercent,
+                "backgroundColor": "#BA6606",
+                "height": "6px"
+              }
+            ],
+            "backgroundColor": "#FAE1A2",
+            "height": "6px",
+            "margin": "sm"
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "text",
+            "text": "Your Milestones",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "Protein "+ fppercent +" success",
+            "color": "#8C8C8C",
+            "align": "start",
+            "size": "xs",
+            "gravity": "center",
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": fppercent,
+                "backgroundColor": "#008000",
+                "height": "6px"
+              }
+            ],
+            "backgroundColor": "#D3D3D3",
+            "height": "6px",
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "Carbohydrate "+ fcpercent +" success",
+            "color": "#8C8C8C",
+            "align": "start",
+            "size": "xs",
+            "gravity": "center",
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": fcpercent,
+                "backgroundColor": "#008000",
+                "height": "6px"
+              }
+            ],
+            "backgroundColor": "#D3D3D3",
+            "height": "6px",
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "Fat "+ ffpercent + " success",
+            "color": "#8C8C8C",
+            "align": "start",
+            "size": "xs",
+            "gravity": "center",
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": ffpercent,
+                "backgroundColor": "#008000",
+                "height": "6px"
+              }
+            ],
+            "backgroundColor": "#D3D3D3",
+            "height": "6px",
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "Fiber " + ffipercent + " success",
+            "color": "#8C8C8C",
+            "align": "start",
+            "size": "xs",
+            "gravity": "center",
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": ffipercent,
+                "backgroundColor": "#008000",
+                "height": "6px"
+              }
+            ],
+            "backgroundColor": "#D3D3D3",
+            "height": "6px",
+            "margin": "sm"
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "text",
+            "text": "Nutrition",
+            "weight": "bold"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "size": "xs",
+                "color": "#8C8C8C",
+                "text": "Avgerage Calories :"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": favcal+ " kcal/day",
+                    "size": "xs",
+                    "color": "#8C8C8C",
+                    "align": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Average Protein :",
+                "size": "xs",
+                "color": "#8C8C8C"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": favp + " g/day",
+                    "size": "xs",
+                    "color": "#8C8C8C",
+                    "align": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Average Carbohydrate :",
+                "size": "xs",
+                "color": "#8C8C8C"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": favc + " g/day",
+                    "size": "xs",
+                    "color": "#8C8C8C",
+                    "align": "center",
+                    "wrap": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Average Fat :",
+                "size": "xs",
+                "color": "#8C8C8C"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": favf + " g/day",
+                    "size": "xs",
+                    "color": "#8C8C8C",
+                    "align": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Average Fiber :",
+                "size": "xs",
+                "color": "#8C8C8C"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": favfi + " g/day",
+                    "size": "xs",
+                    "color": "#8C8C8C",
+                    "align": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "separator",
+            "margin": "lg"
+          }
+        ],
+        "spacing": "md",
+        "paddingAll": "12px"
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "mega",
+      "header": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Latest Mood",
+                "weight": "bold",
+                "size": "md"
+              },
+              {
+                "type": "image",
+                "url": fmoodurl,
+                "align": "center"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "สัปดาห์ที่ผ่านมาฉันบอกกับตัวเองว่า...",
+                "size": "xs",
+                "wrap": true,
+                "offsetTop": "25px"
+              },
+              {
+                "type": "text",
+                "text": fcustmsg +'',
+                "align": "start",
+                "color": "#8C8C8C",
+                "size": "sm",
+                "wrap": true,
+                "gravity": "center",
+                "offsetTop": "30px"
+              }
+            ]
+          }
+        ],
+        "paddingTop": "19px",
+        "paddingAll": "12px",
+        "paddingBottom": "16px"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "separator"
+          },
+           {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Weight Tracking",
+                "weight": "bold"
+              },
+              {
+                "type": "text",
+                "text": "ความเปลี่ยนแปลงของน้ำหนักจากสัปดาห์ที่แล้ว",
+                "size": "xs",
+                "color": "#8C8C8C"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "size": "xl",
+                    "text": foldwgt+'',
+                    "weight": "bold",
+                    "align": "center",
+                    "gravity": "center"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://firebasestorage.googleapis.com/v0/b/whichmeal-food-db.appspot.com/o/arrow-44-256.png?alt=media&token=83c243ce-eb91-4615-9f7e-e1fb98b95957",
+                    "size": "xxs"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "size": "xl",
+                        "text": fnewwgt+'',
+                        "weight": "bold",
+                        "align": "center",
+                        "gravity": "center",
+                        "offsetTop": "5px"
+                      }
+                    ]
+                  }
+                ],
+                "paddingAll": "10px"
+              }
+            ]
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "text",
+            "text": "หากคุณรักษาพฤติกรรมการทานอาหารเหมือนสัปดาห์ที่แล้ว น้ำหนักของคุณจะลดลงเฉลี่ย",
+            "wrap": true,
+            "size": "sm",
+            "align": "center",
+            "offsetTop": "10px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": fexpectw +'',
+                    "wrap": true,
+                    "align": "end",
+                    "size": "xxl",
+                    "weight": "bold",
+                    "gravity": "bottom",
+                    "offsetStart": "40px",
+                    "offsetTop": "10px"
+                  },
+                  {
+                    "type": "text",
+                    "text": " ในอีก 4 สัปดาห์",
+                    "wrap": true,
+                    "size": "xs",
+                    "gravity": "center",
+                    "offsetStart": "50px",
+                    "offsetTop": "15px"
+                  }
+                ],
+                "paddingBottom": "30px"
+              }
+            ]
+          },
+          {
+            "type": "separator",
+            "margin": "none"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Nutritionist Comments:",
+                "wrap": true,
+                "weight": "bold"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": fnutmsg +'',
+                    "size": "sm",
+                    "wrap": true,
+                    "color": "#8C8C8C",
+                    "offsetTop": "10px",
+                    "align": "center"
+                  }
+                ],
+                "paddingAll": "10px"
+              }
+            ],
+            "offsetTop": "10px"
+          }
+        ],
+        "spacing": "md",
+        "paddingAll": "12px"
+      },
+      "styles": {
+        "footer": {
+          "separator": false
+        }
+      }
+    }
+  ]
+}
+
+//end of JSON
+
+  var lineres = {}
+  lineres['type'] = 'flex'
+  lineres['altText'] = altText
+  lineres['contents'] = flextemplate
+
+  var lr = {
+  "line_payload":[
+      lineres
+    ],
+  "response_type": "object"
+  }
+  return lr
+}
+
+function doGet(request){
+ // Change Spread Sheet url
+ var custid = request.parameter.custid
+ //Logger.log(pname)
+ var result = getcalflex(custid)
+ //Logger.log(jo)
+ result = JSON.stringify(result);
+ return ContentService.createTextOutput(result).setMimeType(ContentService.MimeType.JSON); 
+}
