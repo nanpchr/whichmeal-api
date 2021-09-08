@@ -33,7 +33,7 @@ function getcallistflex(custid='Uc217a79841540c1b0afe06312a885849'){
     foldwgt = datList[i]['น้ำหนักสัปดาห์ที่แล้ว']
     fnewwgt = datList[i]['น้ำหนักปัจจุบัน']
     fexpectw = datList[i]['น้ำหนักที่คาดการณ์']
-    fnutmsg = datList[i]['Nutritionist Comment']
+    fnutmsg = datList[i]['Nutritionist Comment (Weekly)']
 
   }
 }
